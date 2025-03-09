@@ -52,8 +52,7 @@ def build_diff_matrix(A: ti.types.sparse_matrix_builder(),x:ti.types.ndarray(),N
         A[i,i]+=-2+ref_index(x[i])**2*k**2*step**2
         A[i,i+1]+=1.0
         A[i+1,i]+=1.0
-        #print(i)
-    #A[N_components,N_components]+=-2+ref_index(x[N_components-1])**2*step**2*k**2
+        
     #return A
 
 @ti.kernel
@@ -73,11 +72,7 @@ def solve_eigen(n_start,x):
     phi_vector=ti.ndarray(ti.types.f64,shape=len(x))
     build_I(I_b,phi_vector,len(x))
     I=I_b.build()
-    #print(I)
-    #print(phi_vector.to_numpy())
-    #print(k)
-    #phi_vector=np.random.random(len(x))
-    #print(A)
+
     diff_min=step # placed equal to the step size 
     diff=2
     p=step**2*n_start**2*k**2
